@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockserver.integration.ClientAndServer;
-import pl.sdacademy.model.CurrentWeather;
+import pl.sdacademy.model.dao.CurrentWeather;
 
 import java.util.concurrent.TimeUnit;
 
