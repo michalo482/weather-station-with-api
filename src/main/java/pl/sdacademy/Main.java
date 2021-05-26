@@ -1,6 +1,5 @@
 package pl.sdacademy;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import pl.sdacademy.service.WeatherService;
 
 import java.util.Scanner;

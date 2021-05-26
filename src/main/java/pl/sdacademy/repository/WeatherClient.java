@@ -12,11 +12,22 @@ import java.net.http.HttpResponse;
 
 public class WeatherClient {
 
+
+    private String apiUrl;
+
+    public WeatherClient(){
+        this.apiUrl = "http://api.openweathermap.org";
+    }
+
+    WeatherClient(String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
+
     public CurrentWeather downloadCurrentWeather(String city) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
-                .uri(URI.create("http://api.openweathermap.org/data/2.5/weather?appid=1bf2280610892b23825a629aeb4cddc0&lang=pl&units=metric&q=" + city))
+                .uri(URI.create(apiUrl + "/data/2.5/weather?appid=1bf2280610892b23825a629aeb4cddc0&lang=pl&units=metric&q=" + city))
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

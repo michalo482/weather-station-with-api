@@ -15,7 +15,7 @@ public class WeatherService {
         CurrentWeather currentWeather = weatherClient.downloadCurrentWeather(city);
         StringBuilder sb = new StringBuilder();
         sb.append("Aktualna pogoda dla: ")
-                .append(currentWeather.getCity())
+                .append(currentWeather.getLocation())
                 .append("\n")
                 .append("Stan pogody: ")
                 .append(currentWeather.getWeatherList().get(0).getGroupOfWeather())

@@ -7,7 +7,7 @@ import java.util.List;
 public class CurrentWeather {
 
     @JsonProperty("name")
-    private String city;
+    private String location;
 
     @JsonProperty("weather")
     private List<Weather> weatherList;
@@ -45,12 +45,12 @@ public class CurrentWeather {
         this.wind = wind;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
 }
