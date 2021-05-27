@@ -9,24 +9,28 @@ import pl.sdacademy.utils.ReadFileToStringUtils;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Arrays;
+
 
 public class DataBaseUpdate {
     public static void main(String[] args) {
-        String json = ReadFileToStringUtils.getFileFromResourceAsString("current.city.list.json");
-//        WeatherAPIDatabase[] weatherAPIDatabases = mapper(json);
+
+        WeatherAPIDatabase[] weatherDb = mapper();
+        System.out.println(Arrays.toString(weatherDb));
+
 //        for (WeatherAPIDatabase weatherAPIDatabase : weatherAPIDatabases) {
 //            System.out.println(weatherAPIDatabase);
 //        }
-        update(json);
+        update();
         System.out.println("Baza danych zostałą zaktualizowana");
     }
 
-    private static WeatherAPIDatabase[] mapper(String json) {
+    private static WeatherAPIDatabase[] mapper() {
+        String fileFromResourceAsString = ReadFileToStringUtils.getFileFromResourceAsString("current.city.list.json");
         try {
             ObjectMapper mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            WeatherAPIDatabase[] result;
-            result = mapper.readValue(json, WeatherAPIDatabase[].class);
+            WeatherAPIDatabase[] result = mapper.readValue(fileFromResourceAsString, WeatherAPIDatabase[].class);
             return result;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -34,15 +38,15 @@ public class DataBaseUpdate {
         return new WeatherAPIDatabase[0];
     }
 
-    private static boolean update(String json) {
+    private static void update() {
+
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("weatherstationwithapiPU");
         final EntityManager em = emf.createEntityManager();
-        boolean result = false;
-        WeatherAPIDatabase[] weatherAPIDatabases = mapper(json);
+        WeatherAPIDatabase[] weatherDb = mapper();
 
         try {
             em.getTransaction().begin();
-            for (WeatherAPIDatabase weatherAPIDatabase : weatherAPIDatabases) {
+            for (WeatherAPIDatabase weatherAPIDatabase : weatherDb) {
                 String cityName;
                 if (weatherAPIDatabase.getLangs() == null) {
                     cityName = weatherAPIDatabase.getName();
@@ -55,19 +59,32 @@ public class DataBaseUpdate {
                 }
 
                 WeatherAPIDatabase cityToDb = new WeatherAPIDatabase();
-                cityToDb.setName(cityName);
                 cityToDb.setCountry(weatherAPIDatabase.getCountry());
+                cityToDb.setName(cityName);
                 cityToDb.setId(weatherAPIDatabase.getId());
 
+
                 em.persist(cityToDb);
-                result = true;
+
 
             }
             em.getTransaction().commit();
-            return result;
+
         } finally {
             emf.close();
         }
     }
 
-}
+
+//            em.getTransaction().begin();
+//            Stream.of(weatherDb)
+//                    .map(weather -> new WeatherAPIDatabase(weather.getId(), weather.getCountry(), weather.getName()))
+//                    .forEach(em::persist);
+//            em.getTransaction().commit();
+//
+//
+//            emf.close();
+
+    }
+
+
