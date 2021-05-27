@@ -1,4 +1,4 @@
-package pl.sdacademy.model.dto;
+package pl.sdacademy.model.dao;
 
 import lombok.Builder;
 import lombok.Getter;

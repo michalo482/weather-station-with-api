@@ -3,7 +3,7 @@ package pl.sdacademy;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pl.sdacademy.model.dao.WeatherAPIDatabase;
+import pl.sdacademy.model.dto.WeatherAPIDatabase;
 import pl.sdacademy.utils.ReadFileToStringUtils;
 
 import javax.persistence.EntityManager;
@@ -13,10 +13,7 @@ import javax.persistence.Persistence;
 public class DataBaseUpdate {
     public static void main(String[] args) {
         String json = ReadFileToStringUtils.getFileFromResourceAsString("current.city.list.json");
-//        WeatherAPIDatabase[] weatherAPIDatabases = mapper(json);
-//        for (WeatherAPIDatabase weatherAPIDatabase : weatherAPIDatabases) {
-//            System.out.println(weatherAPIDatabase);
-//        }
+
         update(json);
         System.out.println("Baza danych zostałą zaktualizowana");
     }

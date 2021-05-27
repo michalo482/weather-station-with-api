@@ -1,6 +1,6 @@
 package pl.sdacademy.service;
 
-import pl.sdacademy.model.dao.CurrentWeather;
+import pl.sdacademy.model.dto.CurrentWeather;
 import pl.sdacademy.repository.WeatherClient;
 
 public class WeatherService {

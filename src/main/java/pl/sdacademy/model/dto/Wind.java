@@ -1,4 +1,4 @@
-package pl.sdacademy.model.dao;
+package pl.sdacademy.model.dto;
 
 public class Wind {
 

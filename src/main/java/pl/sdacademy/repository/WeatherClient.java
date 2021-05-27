@@ -2,7 +2,7 @@ package pl.sdacademy.repository;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import pl.sdacademy.model.dao.CurrentWeather;
+import pl.sdacademy.model.dto.CurrentWeather;
 
 import java.io.IOException;
 import java.net.URI;
