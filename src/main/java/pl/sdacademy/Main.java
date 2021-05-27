@@ -11,8 +11,6 @@ public class Main {
         System.out.println("Podaj nazwę miasta: ");
         String city = scanner.nextLine();
         System.out.println(weatherService.widgetText(city) + "\n");
-//        System.out.println(weatherService.widgetText("Warszawa") + "\n");
-//        System.out.println(weatherService.widgetText("Katowice") + "\n");
         System.out.println("Koniec");
     }
 }

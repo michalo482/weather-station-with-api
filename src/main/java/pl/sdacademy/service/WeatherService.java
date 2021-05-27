@@ -11,8 +11,8 @@ public class WeatherService {
         this.weatherClient = new WeatherClient();
     }
 
-    public String widgetText(String city) {
-        CurrentWeather currentWeather = weatherClient.downloadCurrentWeather(city);
+    public String widgetText(String parameter) {
+        CurrentWeather currentWeather = weatherClient.downloadCurrentWeather(parameter);
         StringBuilder sb = new StringBuilder();
         sb.append("Aktualna pogoda dla: ")
                 .append(currentWeather.getLocation())

@@ -20,7 +20,6 @@ public class WeatherAPIDatabase {
     @Column(name = "city_id")
     private Integer id;
 
-
     @Transient
     public List<Map<String, String>> langs;
 
