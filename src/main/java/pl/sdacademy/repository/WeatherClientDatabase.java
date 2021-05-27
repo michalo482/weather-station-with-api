@@ -11,18 +11,19 @@ import java.util.Optional;
 
 public class WeatherClientDatabase {
 
-    public Optional<Integer> searchForParameter(String parameter) {
+    public Optional<String> searchForParameter(String parameter) {
 
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("weatherstationwithapiPU");
         final EntityManager em = emf.createEntityManager();
 
         try {
             final TypedQuery<WeatherAPIDatabase> weatherQuery = em.createQuery(
-                    "SELECT wad FROM WeatherAPIDatabase wad WHERE wad.name = :parameter", WeatherAPIDatabase.class
+                    "SELECT wad FROM WeatherAPIDatabase wad WHERE wad.name = :parameter1 OR wad.id = :parameter2", WeatherAPIDatabase.class
             );
-            weatherQuery.setParameter("parameter", parameter);
+            weatherQuery.setParameter("parameter1", parameter);
+            weatherQuery.setParameter("parameter2", parameter);
 
-            Optional<Integer> result = weatherQuery.getResultList().stream()
+            Optional<String> result = weatherQuery.getResultList().stream()
                     .map(WeatherAPIDatabase::getId)
                     .findFirst();
             return result;

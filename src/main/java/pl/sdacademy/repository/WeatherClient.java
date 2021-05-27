@@ -25,12 +25,12 @@ public class WeatherClient {
 
     public CurrentWeather downloadCurrentWeather(String parameter) {
         WeatherClientDatabase weatherClientDatabase = new WeatherClientDatabase();
-        Optional<Integer> optionalId = weatherClientDatabase.searchForParameter(parameter);
+        Optional<String> optionalId = weatherClientDatabase.searchForParameter(parameter);
         String finalParameter = optionalId
                 .map(id -> String.format("id=%s", id))
                 .orElse(String.format("q=%s", parameter));
 
-        System.out.println("Wysłano z parametrem: " + "\n" + finalParameter + "\n");
+        System.out.println("\n" + "Wysłano z parametrem: " + "\n" + finalParameter + "\n");
 
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
